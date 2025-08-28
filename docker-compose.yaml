@@ -1,0 +1,17 @@
+services:
+  yci107-iamge:
+    build: .
+    ports:
+      - "8828:8828"
+    volumes:
+      - .:/app
+    env_file:
+      - .env_docker
+    restart: always
+    networks:
+      - yci107_network
+
+networks:
+  yci107_network:
+    external: true
+
