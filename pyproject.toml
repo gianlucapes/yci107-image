@@ -12,4 +12,5 @@ dependencies = [
     "langserve>=0.3.1",
     "pip>=25.2",
     "pydantic-settings>=2.10.1",
+    "sse-starlette>=3.0.2",
 ]

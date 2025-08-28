@@ -2,24 +2,28 @@ from langgraph.graph import StateGraph, END
 import google.generativeai as genai
 from langserve import add_routes
 from fastapi import FastAPI
+from config import settings
+from pydantic import BaseModel
+from typing import Optional
 
 # 1. Configura Gemini
-genai.configure(api_key="IL_TUO_API_KEY")
-model = genai.GenerativeModel("gemini-1.5-flash")
+genai.configure(api_key=settings.api_google)
+model = genai.GenerativeModel()
 
-# 2. Definisci lo stato
-class State(dict):
-    pass
+class State(BaseModel):
+    input: str
+    prompt: str
+    message: str = ""
+    response: str = ""
 
-# 3. Nodi del grafo
+
 def start_node(state: State):
-    user_input = state.get("input", "")
-    return {"message": f"L'utente ha detto: {user_input}"}
+    return State(input=state.input, message=f"L'utente ha detto: {state.input}", response="")
 
 def llm_node(state: State):
-    message = state["message"]
-    response = model.generate_content(message)
-    return {"response": response.text}
+    response_text = model.generate_content(state.message).text
+    return State(input=state.input, message=state.message, response=response_text)
+
 
 # 4. Costruisci il workflow
 workflow = StateGraph(State)
@@ -35,5 +39,4 @@ app_graph = workflow.compile()
 # 6. Integrazione con LangServe
 app = FastAPI()
 add_routes(app, app_graph, path="/graph")
-
 # Avvio: uvicorn server:app --reload

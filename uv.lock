@@ -714,6 +714,18 @@ wheels = [
 ]
 
 [[package]]
+name = "sse-starlette"
+version = "3.0.2"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "anyio" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/42/6f/22ed6e33f8a9e76ca0a412405f31abb844b779d52c5f96660766edcd737c/sse_starlette-3.0.2.tar.gz", hash = "sha256:ccd60b5765ebb3584d0de2d7a6e4f745672581de4f5005ab31c3a25d10b52b3a", size = 20985 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/ef/10/c78f463b4ef22eef8491f218f692be838282cd65480f6e423d7730dfd1fb/sse_starlette-3.0.2-py3-none-any.whl", hash = "sha256:16b7cbfddbcd4eaca11f7b586f3b8a080f1afe952c15813455b162edea619e5a", size = 11297 },
+]
+
+[[package]]
 name = "starlette"
 version = "0.47.3"
 source = { registry = "https://pypi.org/simple" }
@@ -820,6 +832,7 @@ dependencies = [
     { name = "langserve" },
     { name = "pip" },
     { name = "pydantic-settings" },
+    { name = "sse-starlette" },
 ]
 
 [package.metadata]
@@ -831,6 +844,7 @@ requires-dist = [
     { name = "langserve", specifier = ">=0.3.1" },
     { name = "pip", specifier = ">=25.2" },
     { name = "pydantic-settings", specifier = ">=2.10.1" },
+    { name = "sse-starlette", specifier = ">=3.0.2" },
 ]
 
 [[package]]

@@ -6,13 +6,13 @@ WORKDIR /app
 
 # Copia i file necessari
 COPY requirements.txt .
-COPY main.py .
+COPY server.py .
 
 # Installa le dipendenze
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Espone la porta
-EXPOSE 8000
+EXPOSE 8828
 
 # Comando per avviare l'app
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "server:app", "--host", "0.0.0.0", "--port", "8828"]
